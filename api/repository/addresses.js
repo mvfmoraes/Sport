@@ -7,7 +7,7 @@ exports.getById = async id => {
     const resposta = await table
         .select()
         .where({ id })
-        .then(datas => Sucesso(datas.firt()))
+        .then(datas => Sucesso(datas.first()))
         .catch(erro => Falha(erro));
 
     return Finalizar(resposta);
