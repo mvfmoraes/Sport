@@ -1,12 +1,12 @@
 const db = require('../../config/database');
 const { Sucesso, Falha, Finalizar } = require('../../helpers/results');
 
-const table = db('core_stats');
+const table = db('dbInfo');
 
-exports.getById = async id => {
+exports.getById = async version => {
     const resposta = await table
         .select()
-        .where({ id })
+        .where({ version })
         .then(datas => Sucesso(datas.first()))
         .catch(erro => Falha(erro));
 

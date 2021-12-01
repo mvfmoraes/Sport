@@ -21,3 +21,32 @@ exports.getAll = async () => {
 
     return Finalizar(resposta);
 }
+exports.put = async ({
+    baseball_action_pitch_id,
+    location,
+    strength,
+    velocity,
+    comment,
+    trajectory_coordinates,
+    trajectory_formula	
+
+}) => {
+try {
+    const resposta = await table
+        .insert({
+            baseball_action_pitch_id,
+            location,
+            strength,
+            velocity,
+            comment,
+            trajectory_coordinates,
+            trajectory_formula
+        })
+        .then(([ id ]) => Sucesso(id))
+        .catch(erro => Falha(erro));
+
+    return Finalizar(resposta);
+} catch (error) {
+    console.log(error)
+}
+}

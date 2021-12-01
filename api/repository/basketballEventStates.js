@@ -21,3 +21,34 @@ exports.getAll = async () => {
 
     return Finalizar(resposta);
 }
+exports.put = async ({
+    event_id,
+    current_state,
+    sequence_number,
+    period_value,
+    period_time_elapsed,
+    period_time_remaining,
+    context	
+
+}) => {
+    try {
+        const resposta = await table
+            .insert({
+                event_id,
+                current_state,
+                sequence_number,
+                period_value,
+                period_time_elapsed,
+                period_time_remaining,
+                context	
+
+            })
+            .then(([ id ]) => Sucesso(id))
+            .catch(erro => Falha(erro));
+            
+        return Finalizar(resposta);
+    } catch (error) {
+        console.log(error)
+    }
+}
+

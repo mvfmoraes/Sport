@@ -21,3 +21,25 @@ exports.getAll = async () => {
 
     return Finalizar(resposta);
 }
+exports.put = async ({
+    bookmaker_key,
+    publisher_id,
+    location_id	
+
+}) => {
+    try {
+        const resposta = await table
+            .insert({
+                bookmaker_key,
+                publisher_id,
+                location_id			
+
+            })
+            .then(([ id ]) => Sucesso(id))
+            .catch(erro => Falha(erro));
+            
+        return Finalizar(resposta);
+    } catch (error) {
+        console.log(error)
+    }
+}

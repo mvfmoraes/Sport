@@ -18,3 +18,12 @@ exports.getAll = async (req, res) => {
         return res.status(400).send({ status: false, erros: e });
     }
 }
+exports.put = async (req, res) => {
+    try {
+        const data = await repository.put(req.body);
+        return res.status(200).send({ status: true, data });
+    } catch (e) {
+        console.log(e)
+        return res.status(400).send({ status: false, erros: e });
+    }
+}

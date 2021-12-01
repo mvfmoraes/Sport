@@ -21,3 +21,26 @@ exports.getAll = async () => {
 
     return Finalizar(resposta);
 }
+exports.put = async ({
+    	
+    package_key,
+    package_name,
+    date_time
+
+}) => {
+try {
+    const resposta = await table
+        .insert({
+            package_key,
+            package_name,
+            date_time		
+
+        })
+        .then(([ id ]) => Sucesso(id))
+        .catch(erro => Falha(erro));
+        
+    return Finalizar(resposta);
+} catch (error) {
+    console.log(error)
+}
+}
